@@ -1,0 +1,39 @@
+From bd621305ce5ab77be404ef44f94511f9616d888c Mon Sep 17 00:00:00 2001
+From: paperchalice <liujunchang97@outlook.com>
+Date: Sat, 15 Mar 2025 20:27:55 +0800
+Subject: [PATCH 2/2] Generate import library in CMake
+
+---
+ helper.pl     | 6 +++++-
+ sources.cmake | 4 ++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/helper.pl b/helper.pl
+index 6366d04..2ece67f 100755
+--- a/helper.pl
++++ b/helper.pl
+@@ -237,7 +237,11 @@ set(SOURCES\n";
+   foreach my $hobj (sort @headers) {
+     $output .= $hobj . "\n";
+   }
+-  $output .= ")\n";
++  $output .= ")
++
++if(MSVC AND BUILD_SHARED_LIBS)
++  list(APPEND SOURCES tommath.def)
++endif()\n";
+   return $output;
+ }
+ 
+diff --git a/sources.cmake b/sources.cmake
+index a2df090..1dd30a6 100644
+--- a/sources.cmake
++++ b/sources.cmake
+@@ -165,3 +165,7 @@ tommath_cutoffs.h
+ tommath_private.h
+ tommath_superclass.h
+ )
++
++if(MSVC AND BUILD_SHARED_LIBS)
++  list(APPEND SOURCES tommath.def)
++endif()
