@@ -15,6 +15,9 @@ source:
     # https://github.com/libtom/libtommath/pull/589
     # fix creating .lib on Windows
     - patches/0002-Generate-import-library-in-CMake.patch
+    # https://github.com/libtom/libtommath/pull/605
+    # fix mp_set_double on win-arm64
+    - patches/gh605.patch
 
 build:
   number: 2
