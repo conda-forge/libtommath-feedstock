@@ -23,10 +23,10 @@ build:
     - cd build
     - if: unix
       then:
-        - cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+        - cmake -G Ninja ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
     - if: win
       then:
-        - cmake -G Ninja -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+        - cmake -G Ninja %CMAKE_ARGS% -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
     - ninja
     - ninja install
 
@@ -79,3 +79,4 @@ extra:
   recipe-maintainers:
     - isuruf
     - zelosleone
+    - isuruf
