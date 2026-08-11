@@ -8,9 +8,16 @@ package:
 source:
   url: https://github.com/libtom/libtommath/archive/v${{ version }}.tar.gz
   sha256: 6d099e93ff00fa9b18346f4bcd97dcc48c3e91286f7e16c4ac5515a7171c3149
+  patches:
+    # https://github.com/libtom/libtommath/pull/476
+    # fix build failure due to missing mp_set_double on Windows
+    - patches/0001-introduce-MP_HAS_SET_DOUBLE.patch
+    # https://github.com/libtom/libtommath/pull/589
+    # fix creating .lib on Windows
+    - patches/0002-Generate-import-library-in-CMake.patch
 
 build:
-  number: 1
+  number: 2
   script:
     - mkdir build
     - cd build
@@ -42,6 +49,7 @@ tests:
         - if: win
           then:
             - Library/bin/tommath.dll
+            - Library/lib/tommath.lib
             - Library/lib/cmake/libtommath/libtommath-*.cmake
             - Library/lib/pkgconfig/libtommath.pc
         - if: unix
