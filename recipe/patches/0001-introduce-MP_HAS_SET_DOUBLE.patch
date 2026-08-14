@@ -3,6 +3,8 @@ From: Steffen Jaeckel <s@jaeckel.eu>
 Date: Thu, 5 Mar 2020 13:57:07 +0100
 Subject: [PATCH 1/2] introduce MP_HAS_SET_DOUBLE
 
+Modified for win-arm64 too with gh605
+
 ---
  bn_mp_set_double.c | 2 +-
  demo/test.c        | 9 +++++++--
@@ -60,7 +62,7 @@ index 5960309..e279006 100644
 +#if defined(__STDC_IEC_559__) || defined(__GCC_IEC_559) \
 +   || defined(__x86_64__) || defined(_M_X64) || defined(_M_AMD64) \
 +   || defined(__i386__) || defined(_M_X86) \
-+   || defined(__aarch64__) || defined(__arm__)
++   || defined(__aarch64__) || defined(__arm__) || defined(_M_ARM64)
 +#define MP_HAS_SET_DOUBLE
 +#endif
 +
