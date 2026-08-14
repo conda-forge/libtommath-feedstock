@@ -1,0 +1,22 @@
+From e17b8b24724c9d9ce9cf8489f775a6029ac8beb7 Mon Sep 17 00:00:00 2001
+From: Isuru Fernando <isuruf@gmail.com>
+Date: Tue, 11 Aug 2026 08:11:49 -0700
+Subject: [PATCH] Support windows arm64
+
+---
+ tommath_private.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tommath_private.h b/tommath_private.h
+index be620dbc..74503e65 100644
+--- a/tommath_private.h
++++ b/tommath_private.h
+@@ -178,7 +178,7 @@ MP_STATIC_ASSERT(min_prec_geq_uint64size,
+ #if defined(__STDC_IEC_559__) || defined(__GCC_IEC_559) \
+    || defined(__x86_64__) || defined(_M_X64) || defined(_M_AMD64) \
+    || defined(__i386__) || defined(_M_X86) || defined(_M_IX86) \
+-   || defined(__aarch64__) || defined(__arm__)
++   || defined(__aarch64__) || defined(__arm__) || defined(_M_ARM64)
+ #define MP_HAS_SET_DOUBLE
+ #endif
+ 
