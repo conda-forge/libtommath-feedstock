@@ -18,7 +18,7 @@ source:
     - patches/0002-Generate-import-library-in-CMake.patch
 
 build:
-  number: 2
+  number: 3
   script:
     - mkdir build
     - cd build
