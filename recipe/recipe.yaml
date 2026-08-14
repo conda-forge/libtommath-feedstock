@@ -10,6 +10,7 @@ source:
   sha256: 6d099e93ff00fa9b18346f4bcd97dcc48c3e91286f7e16c4ac5515a7171c3149
   patches:
     # https://github.com/libtom/libtommath/pull/476
+    # https://github.com/libtom/libtommath/pull/605
     # fix build failure due to missing mp_set_double on Windows
     - patches/0001-introduce-MP_HAS_SET_DOUBLE.patch
     # https://github.com/libtom/libtommath/pull/589
@@ -23,10 +24,10 @@ build:
     - cd build
     - if: unix
       then:
-        - cmake -G Ninja -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+        - cmake -G Ninja ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
     - if: win
       then:
-        - cmake -G Ninja -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
+        - cmake -G Ninja %CMAKE_ARGS% -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON ..
     - ninja
     - ninja install
 
@@ -79,3 +80,4 @@ extra:
   recipe-maintainers:
     - isuruf
     - zelosleone
+    - isuruf
